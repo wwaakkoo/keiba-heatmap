@@ -1,4 +1,5 @@
-// 型定義のエクスポート用インデックスファイル
+// Core types
 export * from './core';
+
+// Enums
 export * from './enums';
-export * from './validation';

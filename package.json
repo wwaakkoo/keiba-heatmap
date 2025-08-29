@@ -18,13 +18,19 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
     "dexie": "^4.2.0",
+    "lucide-react": "^0.542.0",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "tailwind-merge": "^3.3.1"
   },
   "devDependencies": {
     "@commitlint/cli": "^18.4.3",
     "@commitlint/config-conventional": "^18.4.3",
+    "@tailwindcss/forms": "^0.5.10",
+    "@tailwindcss/typography": "^0.5.16",
     "@testing-library/jest-dom": "^6.8.0",
     "@testing-library/react": "^16.3.0",
     "@testing-library/user-event": "^14.6.1",
@@ -35,6 +41,7 @@
     "@vitejs/plugin-react": "^4.2.1",
     "@vitest/coverage-v8": "^3.2.4",
     "@vitest/ui": "^3.2.4",
+    "autoprefixer": "^10.4.21",
     "commitizen": "^4.3.0",
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "^8.55.0",
@@ -45,7 +52,9 @@
     "husky": "^8.0.3",
     "jsdom": "^26.1.0",
     "lint-staged": "^15.2.0",
+    "postcss": "^8.5.6",
     "prettier": "^3.1.1",
+    "tailwindcss": "^3.4.17",
     "typescript": "^5.2.2",
     "vite": "^5.0.8",
     "vitest": "^3.2.4"

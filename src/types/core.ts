@@ -218,3 +218,30 @@ export interface UserSettings {
     retentionPeriod: number; // 日数
   };
 }
+// アプリケーション設定 (Key-Value形式でのストレージ用)
+export interface AppSettings {
+  key: string;
+  value: unknown;
+  updatedAt: Timestamp;
+}
+
+// バリデーション結果
+export interface ValidationResult {
+  isValid: boolean;
+  errors: ValidationError[];
+}
+
+// バリデーションエラー
+export interface ValidationError {
+  field: string;
+  message: string;
+  value?: unknown;
+}
+
+// 操作結果
+export interface OperationResult<T = void> {
+  success: boolean;
+  data?: T;
+  error?: string;
+  timestamp: Timestamp;
+}
