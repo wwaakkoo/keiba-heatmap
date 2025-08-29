@@ -2,13 +2,13 @@
 
 ## Phase 0: 開発環境準備（1-2日）
 
-- [-] **0.1 開発環境とツールチェーンのセットアップ**
+- [x] **0.1 開発環境とツールチェーンのセットアップ**
   - Node.js 20.x LTS、pnpm のインストール
   - VSCode拡張機能の設定（ESLint, Prettier, TypeScript）
   - Git リポジトリの初期化と .gitignore 設定
   - コミット規約（Conventional Commits）の設定
 
-- [ ] **0.2 プロジェクト初期設定**
+- [x] **0.2 プロジェクト初期設定**
   - Vite + React + TypeScript プロジェクトの作成
   - ESLint, Prettier の設定ファイル作成
   - Vitest の設定（単体テスト用）
