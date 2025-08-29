@@ -13,6 +13,18 @@ import {
 import { ValidationResult, ValidationError } from '@/types/core';
 import { Surface, TrackCondition, RaceClass, Gender } from '@/types/enums';
 
+// フォーム用の型定義（循環参照を避けるため）
+interface HorseDataForm {
+  number: number;
+  name: string;
+  age: number;
+  gender: 'male' | 'female' | 'gelding';
+  weight: number;
+  jockeyName: string;
+  trainerName: string;
+  ownerName?: string;
+}
+
 export class NetKeibaParser {
   private config: ParserConfig;
 
@@ -164,9 +176,31 @@ export class NetKeibaParser {
   }
 
   /**
-   * 馬データをパース
+   * 馬データをパース（フォーム用）
    */
-  parseHorseData(text: string): ParseResult<HorseData[]> {
+  parseHorseData(text: string): HorseDataForm[] {
+    const result = this.parseHorseDataInternal(text);
+    if (!result.success || !result.data) {
+      throw new Error(result.errors?.[0]?.message || 'パースに失敗しました');
+    }
+
+    // HorseDataFormの形式に変換
+    return result.data.map(horse => ({
+      number: horse.number,
+      name: horse.name,
+      age: horse.age,
+      gender: this.convertGenderToString(horse.gender),
+      weight: horse.weight,
+      jockeyName: horse.jockeyName,
+      trainerName: horse.trainerName,
+      ownerName: '', // NetKeibaデータには含まれていない場合が多い
+    }));
+  }
+
+  /**
+   * 馬データをパース（内部用）
+   */
+  parseHorseDataInternal(text: string): ParseResult<HorseData[]> {
     const errors: ParseError[] = [];
     const warnings: string[] = [];
     const horses: HorseData[] = [];
@@ -466,6 +500,19 @@ export class NetKeibaParser {
         return Gender.GELDING;
       default:
         return Gender.MALE;
+    }
+  }
+
+  private convertGenderToString(gender: Gender): 'male' | 'female' | 'gelding' {
+    switch (gender) {
+      case Gender.MALE:
+        return 'male';
+      case Gender.FEMALE:
+        return 'female';
+      case Gender.GELDING:
+        return 'gelding';
+      default:
+        return 'male';
     }
   }
 }

@@ -34,6 +34,7 @@ export enum RaceClass {
   CLASS_2 = '2勝クラス',
   CLASS_1 = '1勝クラス',
   MAIDEN = '未勝利',
+  NEWCOMER = '新馬',
 }
 
 // 距離カテゴリ

@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { AppShell, Navigation, PageContainer, Section } from '@/components';
 import { Button } from '@/components/ui/button';
 import {
@@ -8,7 +9,8 @@ import {
   CardTitle,
 } from '@/components/ui/card';
 import { ErrorBoundary } from '@/components/common/ErrorBoundary';
-import { Home, BarChart3, TrendingUp, Settings } from 'lucide-react';
+import { RaceInputWizard } from '@/features/data-input';
+import { Home, BarChart3, TrendingUp, Settings, Plus } from 'lucide-react';
 
 const navigationItems = [
   { label: 'ホーム', href: '/', icon: <Home />, active: true },
@@ -18,6 +20,19 @@ const navigationItems = [
 ];
 
 function App() {
+  const [showRaceInput, setShowRaceInput] = useState(false);
+
+  if (showRaceInput) {
+    return (
+      <ErrorBoundary>
+        <RaceInputWizard
+          onComplete={() => setShowRaceInput(false)}
+          onCancel={() => setShowRaceInput(false)}
+        />
+      </ErrorBoundary>
+    );
+  }
+
   return (
     <ErrorBoundary>
       <AppShell
@@ -48,13 +63,19 @@ function App() {
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
               <Card>
                 <CardHeader>
-                  <CardTitle>今日の予想</CardTitle>
+                  <CardTitle>レースデータ入力</CardTitle>
                   <CardDescription>
-                    本日開催されるレースの予想を確認できます
+                    新しいレースデータを入力して予想を開始できます
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <Button className="w-full">予想を見る</Button>
+                  <Button
+                    className="w-full"
+                    onClick={() => setShowRaceInput(true)}
+                  >
+                    <Plus className="w-4 h-4 mr-2" />
+                    レースを追加
+                  </Button>
                 </CardContent>
               </Card>
 
