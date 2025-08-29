@@ -64,7 +64,7 @@
 
 ## Phase 2: コア機能実装（2週間）
 
-- [ ] **2.1 NetKeibaパーサーの実装**
+- [-] **2.1 NetKeibaパーサーの実装**
   - パーサークラスの基本構造
     ```typescript
     class NetKeibaParser {
